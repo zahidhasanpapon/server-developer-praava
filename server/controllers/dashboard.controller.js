@@ -2,10 +2,9 @@ const pool = require("../configs/db.config");
 
 const dashboard = async (req, res) => {
   try {
-    const user = await pool.query(
-      "SELECT user_name FROM users WHERE user_id = $1",
-      [req.user]
-    );
+    const user = await pool.query("SELECT name FROM users WHERE id = $1", [
+      req.user,
+    ]);
 
     res.json(user.rows[0]);
   } catch (err) {
