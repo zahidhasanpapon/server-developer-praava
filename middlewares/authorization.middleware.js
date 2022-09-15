@@ -18,4 +18,6 @@ const authMiddle = async (req, res, next) => {
   }
 };
 
+const adminOnly = async (req, res, next) => {};
+
 module.exports = { authMiddle };

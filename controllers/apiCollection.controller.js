@@ -1,6 +1,7 @@
 const pool = require("../configs/db.config");
 
 const getAllApiCollectionList = async (req, res) => {
+  console.log(req.user);
   try {
     // const user = await pool.query(
     //   "SELECT name FROM api_collection WHERE id = $1",

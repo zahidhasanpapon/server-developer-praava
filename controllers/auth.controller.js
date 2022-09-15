@@ -54,6 +54,8 @@ const loginUser = async (req, res) => {
     // 3. Check if incoming password is the same as the database password
     const validPassword = await bcrypt.compare(password, user.rows[0].password);
 
+    // TODO: Refresh Token - Per request token
+
     if (!validPassword) {
       return res.status(401).json("Password or Email is incorrect!");
     }
