@@ -95,6 +95,24 @@ CREATE TABLE IF NOT EXISTS user_roles_mapping (
             REFERENCES users(id)
 );
 
+-- Create api collection, api endpoint mapping
+CREATE TABLE IF NOT EXISTS api_collection_api_endpoint_mapping (
+    id uuid NOT NULL PRIMARY KEY DEFAULT uuid_generate_v4(),
+    api_collection_id uuid NOT NULL,
+    api_endpoint_id uuid NOT NULL,
+    status BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_by VARCHAR(255),
+    updated_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_BY VARCHAR(255),
+    CONSTRAINT fk_api_endpoint_id
+        FOREIGN KEY (api_endpoint_id)
+            REFERENCES api_endpoint(id),
+    CONSTRAINT fk_api_collection_id
+        FOREIGN KEY (api_collection_id)
+            REFERENCES api_collection(id)  
+);
+
 -- Fake User_roles_mapping insertion
 INSERT INTO user_roles_mapping (user_id, role_id) VALUES ('3577ae90-12b8-435d-8d6c-d079159c748a', '577cae69-b168-4b59-a39f-c3c8f9e9e8ee');
 
@@ -126,3 +144,9 @@ ON a.id = b.api_collection_id;
 
 -- Select roles from user
 SELECT name FROM user_roles_mapping as a LEFT JOIN roles as b ON a.role_id = b.id WHERE a.user_id = '3577ae90-12b8-435d-8d6c-d079159c748a';
+
+-- Get role name from database
+SELECT name FROM roles
+LEFT JOIN user_roles_mapping
+ON roles.id = user_roles_mapping.role_id
+WHERE user_id = '3577ae90-12b8-435d-8d6c-d079159c748a';

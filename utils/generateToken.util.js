@@ -6,7 +6,7 @@ const generateToken = (id) => {
     user: id,
   };
 
-  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1d" });
+  return jwt.sign(payload, process.env.JWT_SECRET_ACCESS, { expiresIn: "1d" });
 };
 
 module.exports = generateToken;

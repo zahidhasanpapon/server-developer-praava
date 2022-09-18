@@ -4,12 +4,13 @@ const cors = require("cors");
 
 require("dotenv").config();
 
-const roles = require("./utils/getUserRoles.util");
+// const roles = require("./utils/getUserRoles.util");
 
 const app = express();
 
 // Middlewares
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Routes
