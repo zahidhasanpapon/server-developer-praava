@@ -4,7 +4,8 @@ const authorization = require("../middlewares/authorization.middleware");
 
 router.get(
   "/get-users",
-  authorization.authMiddle,
+  // authorization.authMiddle,
+  authorization.authorize,
   authorization.adminOnly,
   controller.getAllRegisteredUsers
 );

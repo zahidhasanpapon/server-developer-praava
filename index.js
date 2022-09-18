@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const { notFound } = require("./middlewares/error.middleware");
 
 require("dotenv").config();
 
@@ -21,7 +22,10 @@ app.use("/admin", require("./routes/admin.route"));
 
 // const res = roles("3577ae90-12b8-435d-8d6c-d079159c748a");
 
-const port = process.env.PORT;
-app.listen(port, () => {
-  console.log(`server running on port ${port}`);
+app.use(notFound);
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`server running in ${process.env.NODE_ENV} on port ${port}`);
 });

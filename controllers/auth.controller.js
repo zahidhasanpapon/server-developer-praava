@@ -3,6 +3,12 @@ const bcrypt = require("bcrypt");
 const pool = require("../configs/db.config");
 const jwtGenerator = require("../utils/generateToken.util");
 
+/**
+ *
+ * @param {*} req | Register a new user
+ * @param {*} res |
+ * @returns
+ */
 const registerUser = async (req, res) => {
   // 1. Destructure the req.body {name, email, passowrd}.
   const { name, email, password } = req.body;
@@ -30,7 +36,7 @@ const registerUser = async (req, res) => {
     // 5. Generate the JWT token for the user
     const token = jwtGenerator(newUser.rows[0].id);
 
-    res.json({ token });
+    res.status(200).json({ token: token });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

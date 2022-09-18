@@ -19,7 +19,26 @@ const authMiddle = async (req, res, next) => {
   }
 };
 
-// const authorize = async (req, res, next) => {};
+const authorize = async (req, res, next) => {
+  try {
+    let token;
+
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.statrsWith("Bearer")
+    ) {
+      token = req.headers.authorization.split(" ")[1];
+
+      const decode = jwt.verify(token, process.env.JWT_SECRET_ACCESS);
+
+      req.user = playload.user;
+      next();
+    }
+  } catch (err) {
+    console.error(err.message);
+    return res.status(403).json("NOT Authorized, token failed");
+  }
+};
 
 const adminOnly = async (req, res, next) => {
   try {
@@ -44,4 +63,4 @@ const adminOnly = async (req, res, next) => {
   }
 };
 
-module.exports = { authMiddle, adminOnly };
+module.exports = { authMiddle, adminOnly, authorize };
