@@ -19,6 +19,9 @@ const authMiddle = async (req, res, next) => {
   }
 };
 
+/**
+ * TODO: Findout why req.headers.authorization is not working
+ */
 const authorize = async (req, res, next) => {
   try {
     let token;
@@ -31,7 +34,7 @@ const authorize = async (req, res, next) => {
 
       const decode = jwt.verify(token, process.env.JWT_SECRET_ACCESS);
 
-      req.user = playload.user;
+      req.user = decode.user;
       next();
     }
   } catch (err) {

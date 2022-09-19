@@ -1,0 +1,9 @@
+{
+    "dev": {
+        "driver": "pg",
+        "user": "postgres",
+        "password": "329DNa8nNbzPzg",
+        "host": "localhost",
+        "database": "praava_patient_portal_v2"
+    }
+}

@@ -1,9 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { notFound } = require("./middlewares/error.middleware");
-
 require("dotenv").config();
+
+const { notFound } = require("./middlewares/error.middleware");
 
 // const roles = require("./utils/getUserRoles.util");
 
@@ -11,8 +11,8 @@ const app = express();
 
 // Middlewares
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use("/auth", require("./routes/auth.route"));
@@ -27,5 +27,5 @@ app.use(notFound);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`server running in ${process.env.NODE_ENV} on port ${port}`);
+  console.log(`server running in ${process.env.NODE_ENV} on port ${PORT}`);
 });
