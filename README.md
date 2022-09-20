@@ -8,6 +8,36 @@
 
 ## Database
 
+Create Database:
+
+```sql
+CREATE DATABASE praava_patient_portal_v2;
+```
+
+Add extension for UUID:
+
+```sql
+CREATE extension "uuid-ossp";
+```
+
+Migration Commands:
+
+```js
+node node_modules/db-migrate/bin/db-migrate
+```
+
+To create a new migration:
+
+```js
+node node_modules/db-migrate/bin/db-migrate create <migration_name> --config ./database/config/database.json
+```
+
+Running migrations:
+
+```js
+npm run migrate:up
+```
+
 ## Environment Variables
 
 Create a new file .env:
@@ -20,7 +50,7 @@ Required fileds so far:
 
 - NODE_ENV
 - PORT
-- PG-USER
+- PG_USER
 - PG_PASSWORD
 - PG_HOST
 - PG_PORT
@@ -42,10 +72,10 @@ Install dependencies:
 npm install
 ```
 
-Start the server:
+Start the server for development:
 
 ```sh
-npm start
+npm run dev-start
 ```
 
 ## Tech Stack
@@ -53,10 +83,8 @@ npm start
 1.  Node.js
 2.  Express
 3.  PostgreSQL
-4.  React
-5.  Bootstrap
-6.  JsonWebToken
-7.  Bcrypt
-8.  CORS
-9.  uuid
-10. dotenv
+4.  JsonWebToken
+5.  Bcrypt
+6.  CORS
+7.  uuid
+8.  dotenv

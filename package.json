@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "dev-start": "nodemon index.js",
+    "migrate:up": "node ./node_modules/db-migrate/bin/db-migrate up --config ./database/config/database.json",
+    "migrate:down": "node ./node_modules/db-migrate/bin/db-migrate down --config ./database/config/database.json"
   },
   "keywords": [],
   "author": "",

@@ -1,7 +1,8 @@
 TODO:
 
-1. Migration - Switch to Squilize
+1. Migration.
 2. Update Readme - How to run the application.
+3. Complete further requirements.
 
 Features:
 

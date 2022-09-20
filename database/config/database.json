@@ -4,6 +4,8 @@
         "user": "postgres",
         "password": "329DNa8nNbzPzg",
         "host": "localhost",
-        "database": "praava_patient_portal_v2"
-    }
+        "database": "praava_patient_portal_v2",
+        "port": "5432"
+    },
+    "sql-file": true
 }
