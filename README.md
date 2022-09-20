@@ -6,6 +6,27 @@
 - npm 8.19.12
 - psql (PostgreSQL) 14.5
 
+## Getting Started
+
+Clone the repo:
+
+```sh
+git clone https://github.com/zahidhasanpapon/server-developer-praava.git
+cd server-developer-praava
+```
+
+Install dependencies:
+
+```js
+npm install
+```
+
+Start the server for development:
+
+```sh
+npm run dev-start
+```
+
 ## Database
 
 Create Database:
@@ -56,27 +77,6 @@ Required fileds so far:
 - PG_PORT
 - PG_DATABASE
 - JWT_SECRET_ACCESS
-
-## Getting Started
-
-Clone the repo:
-
-```sh
-git clone https://github.com/zahidhasanpapon/server-developer-praava.git
-cd server-developer-praava
-```
-
-Install dependencies:
-
-```js
-npm install
-```
-
-Start the server for development:
-
-```sh
-npm run dev-start
-```
 
 ## Tech Stack
 

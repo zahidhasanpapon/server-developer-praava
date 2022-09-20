@@ -3,6 +3,7 @@ TODO:
 1. Migration.
 2. Update Readme - How to run the application.
 3. Complete further requirements.
+4. Use of morgan
 
 Features:
 

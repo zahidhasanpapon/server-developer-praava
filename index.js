@@ -1,6 +1,10 @@
+const cors = require("cors");
+const morgan = require("morgan");
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require("cors");
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUI = require("swagger-ui-express");
+
 require("dotenv").config();
 
 const { notFound } = require("./middlewares/error.middleware");
@@ -11,6 +15,7 @@ const app = express();
 
 // Middlewares
 app.use(cors());
+app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
