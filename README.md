@@ -21,44 +21,6 @@ Install dependencies:
 npm install
 ```
 
-Start the server for development:
-
-```sh
-npm run dev-start
-```
-
-## Database
-
-Create Database:
-
-```sql
-CREATE DATABASE praava_patient_portal_v2;
-```
-
-Add extension for UUID:
-
-```sql
-CREATE extension "uuid-ossp";
-```
-
-Migration Commands:
-
-```js
-node node_modules/db-migrate/bin/db-migrate
-```
-
-To create a new migration:
-
-```js
-node node_modules/db-migrate/bin/db-migrate create <migration_name> --config ./database/config/database.json
-```
-
-Running migrations:
-
-```js
-npm run migrate:up
-```
-
 ## Environment Variables
 
 Create a new file .env:
@@ -77,6 +39,46 @@ Required fileds so far:
 - PG_PORT
 - PG_DATABASE
 - JWT_SECRET_ACCESS
+
+See .env.example for better understanding
+
+## Database
+
+Create Database:
+
+```sql
+CREATE DATABASE praava_patient_portal_v2;
+```
+
+Add extension for UUID:
+
+```sql
+CREATE extension "uuid-ossp";
+```
+
+Running migrations:
+
+```js
+npm run migrate:up
+```
+
+Migration Commands:
+
+```js
+node node_modules/db-migrate/bin/db-migrate
+```
+
+To create a new migration:
+
+```js
+node node_modules/db-migrate/bin/db-migrate create <migration_name> --config ./database/config/database.json
+```
+
+Start the server for development:
+
+```sh
+npm run dev-start
+```
 
 ## Tech Stack
 
