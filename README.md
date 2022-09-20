@@ -40,7 +40,7 @@ Required fileds so far:
 - PG_DATABASE
 - JWT_SECRET_ACCESS
 
-See .env.example for better understanding
+See .env.example file for better understanding
 
 ## Database
 
@@ -50,17 +50,25 @@ Create Database:
 CREATE DATABASE praava_patient_portal_v2;
 ```
 
-Add extension for UUID:
+<!-- Add extension for UUID:
 
 ```sql
 CREATE extension "uuid-ossp";
-```
+``` -->
 
 Running migrations:
 
 ```js
 npm run migrate:up
 ```
+
+Start the server for development:
+
+```sh
+npm run dev-start
+```
+
+Ignore if you do not want to create any further migrations.
 
 Migration Commands:
 
@@ -72,12 +80,6 @@ To create a new migration:
 
 ```js
 node node_modules/db-migrate/bin/db-migrate create <migration_name> --config ./database/config/database.json
-```
-
-Start the server for development:
-
-```sh
-npm run dev-start
 ```
 
 ## Tech Stack

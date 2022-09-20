@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev-start": "nodemon index.js",
-    "migrate:up": "node ./node_modules/db-migrate/bin/db-migrate up --config ./database/config/database.json",
+    "migrate:up": "node ./node_modules/db-migrate/bin/db-migrate up --config ./database/config/database.json -e developemnt",
     "migrate:down": "node ./node_modules/db-migrate/bin/db-migrate down --config ./database/config/database.json"
   },
   "keywords": [],

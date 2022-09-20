@@ -5,19 +5,19 @@
     "developemnt": {
         "driver": "pg",
         "user": {
-            "ENV": "POSTGRES_USER"
+            "ENV": "PG_USER"
         },
         "password": {
-            "ENV": "POSTGRES_PASSWORD"
+            "ENV": "PG_PASSWORD"
         },
         "host": {
-            "ENV": "POSTGRES_HOST"
+            "ENV": "PG_HOST"
         },
         "database": {
-            "ENV": "POSTGRES_DATABASE"
+            "ENV": "PG_DATABASE"
         },
         "port": {
-            "ENV": "POSTGRES_PORT"
+            "ENV": "PG_PORT"
         }
     },
     "sql-file": true

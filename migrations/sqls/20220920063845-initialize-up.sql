@@ -1,4 +1,7 @@
 /* Replace with your SQL commands */
+
+CREATE extension "uuid-ossp";
+
 -- Table: public.users
 
 -- DROP TABLE IF EXISTS public.users;
