@@ -1,11 +1,24 @@
 {
-    "dev": {
+    "defaultEnv": {
+        "ENV": "NODE_ENV"
+    },
+    "developemnt": {
         "driver": "pg",
-        "user": "postgres",
-        "password": "329DNa8nNbzPzg",
-        "host": "localhost",
-        "database": "praava_patient_portal_v2",
-        "port": "5432"
+        "user": {
+            "ENV": "POSTGRES_USER"
+        },
+        "password": {
+            "ENV": "POSTGRES_PASSWORD"
+        },
+        "host": {
+            "ENV": "POSTGRES_HOST"
+        },
+        "database": {
+            "ENV": "POSTGRES_DATABASE"
+        },
+        "port": {
+            "ENV": "POSTGRES_PORT"
+        }
     },
     "sql-file": true
 }
