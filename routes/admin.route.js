@@ -4,8 +4,8 @@ const authorization = require("../middlewares/authorization.middleware");
 
 router.get(
   "/get-users",
-  // authorization.authMiddle,
-  authorization.authorize,
+  authorization.authMiddle,
+  // authorization.authorize,
   authorization.adminOnly,
   controller.getAllRegisteredUsers
 );
@@ -29,6 +29,13 @@ router.post(
   authorization.authMiddle,
   authorization.adminOnly,
   controller.createApiEndpoint
+);
+
+router.post(
+  "/user-role-mapping",
+  authorization.authMiddle,
+  authorization.adminOnly,
+  controller.userRoleMapping
 );
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const cors = require("cors");
+const helmet = require("helmet");
 const morgan = require("morgan");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -15,9 +16,32 @@ const app = express();
 
 // Middlewares
 app.use(cors());
+app.use(helmet());
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// API Documentation - Swagger
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Praava Developer Documentation",
+      version: "1.0.0",
+      descriptio: "Here we get all the documentations",
+    },
+    servers: [
+      {
+        url: "http://localhost:5000",
+      },
+    ],
+  },
+  apis: ["./routes/*js"],
+};
+
+const specs = swaggerJsDoc(options);
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 // Routes
 app.use("/auth", require("./routes/auth.route"));

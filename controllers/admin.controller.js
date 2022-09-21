@@ -64,9 +64,45 @@ const createApiEndpoint = async (req, res) => {
   }
 };
 
+const userRoleMapping = async (req, res) => {
+  try {
+    const userId = req.body.user;
+    const roleId = req.body.role;
+
+    const createUserRoleMapping = await pool.query(
+      "INSERT INTO user_roles_mapping (user_id, role_id) VALUES ($1, $2)",
+      [userId, roleId]
+    );
+
+    res.json(createUserRoleMapping.rows[0]);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server Error");
+  }
+};
+
+const roleApiCollectionMapping = async (req, res) => {
+  try {
+    const roleId = req.body.role;
+    const apiCollectionId = req.body.apiCollectionId;
+
+    const creatRoleAPIColletion = await pool.query(
+      "INSERT INTO role_api_collection_mapping (role_id, api_collection_id) VALUES ($1, $2)",
+      [roleId, apiCollectionId]
+    );
+
+    res.status(200).json({ msg: "Created" });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server Error");
+  }
+};
+
 module.exports = {
   getAllRegisteredUsers,
   createNewRole,
   createApiCollection,
   createApiEndpoint,
+  userRoleMapping,
+  roleApiCollectionMapping,
 };

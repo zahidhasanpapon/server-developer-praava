@@ -1,9 +1,13 @@
 TODO:
 
-1. Migration.
-2. Update Readme - How to run the application.
-3. Complete further requirements.
-4. Use of morgan
+1. Swagger Implementation.
+2. Migration.
+3. Update Readme - How to run the application.
+4. Complete further requirements.
+5. Use of morgan
+6. Postman to OpenAPI
+7. UUID - SERIAL
+8. Log File - Every day new Date time
 
 Features:
 
