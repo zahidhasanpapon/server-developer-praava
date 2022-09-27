@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const pool = require("../configs/db.config");
 const jwtGenerator = require("../utils/generateToken.util");
 
+// const logger = require("../utils/logger");
+
 /**
  *
  * @param {*} req | Register a new user
@@ -48,6 +50,7 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    // logger.info("Checking the API status: Everything is OK");
     // 2. Check if user doesn't exist (if not then we throw error)
     const user = await pool.query("SELECT * FROM users WHERE email = $1", [
       email,

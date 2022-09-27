@@ -28,3 +28,7 @@ Future Works
 
 1. Refresh Token - Handle Invalid JWTs - Can blacklist JWTs in Database.
 2. oAuth.
+
+References:
+
+1. Morgan and Winston - https://lioncoding.com/logging-in-express-js-using-winston-and-morgan/

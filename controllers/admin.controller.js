@@ -1,4 +1,5 @@
 const pool = require("../configs/db.config");
+const logger = require("../configs/logger.config");
 
 const getAllRegisteredUsers = async (req, res) => {
   try {
@@ -6,16 +7,17 @@ const getAllRegisteredUsers = async (req, res) => {
       "SELECT id, name, email, status FROM users"
     );
 
+    logger.error(`sent all users: ${allUsers}`);
     res.json(allUsers.rows);
   } catch (err) {
-    console.error(err.message);
+    logger.error(err);
     res.status(500).send("Server Error");
   }
 };
 
 const createNewRole = async (req, res) => {
   try {
-    const roleName = req.body.name;
+    const roleName = body.name;
     const roleDescription = req.body.description;
 
     const createRole = await pool.query(
