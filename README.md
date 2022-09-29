@@ -92,3 +92,19 @@ node node_modules/db-migrate/bin/db-migrate create <migration_name> --config ./d
 6.  CORS
 7.  uuid
 8.  dotenv
+
+## API Documentation
+
+To view the list of available APIs and their specifications, run the server and go to ``
+
+## Logging
+
+Import the logger from `configs/logger.js`. It is using the [Winston](https://github.com/winstonjs/winston) logging library.
+
+Logging should be done according to the following severity levels (ascending order form most important to least important):
+
+```javascript
+
+```
+
+In development mode, log messages of all severity levels will be printed to the console.

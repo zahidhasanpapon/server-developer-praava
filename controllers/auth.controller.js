@@ -1,22 +1,11 @@
 const bcrypt = require("bcrypt");
-
 const pool = require("../configs/db.config");
 const jwtGenerator = require("../utils/generateToken.util");
 
-// const logger = require("../utils/logger");
-
-/**
- *
- * @param {*} req | Register a new user
- * @param {*} res |
- * @returns
- */
 const registerUser = async (req, res) => {
-  // 1. Destructure the req.body {name, email, passowrd}.
   const { name, email, password } = req.body;
 
   try {
-    // 2. Check if user exists (if exists throw error).
     const user = await pool.query("SELECT * FROM users WHERE email = $1", [
       email,
     ]);

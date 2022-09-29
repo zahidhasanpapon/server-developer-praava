@@ -1,67 +1,45 @@
+require("dotenv").config();
 const cors = require("cors");
 const helmet = require("helmet");
 const express = require("express");
 const bodyParser = require("body-parser");
-const swaggerJsDoc = require("swagger-jsdoc");
-const swaggerUI = require("swagger-ui-express");
-
-require("dotenv").config();
-
-const { notFound } = require("./middlewares/error.middleware");
-const morganMiddleware = require("./middlewares/morgan.middleware");
-
+const docsRoute = require("./routes/docs.route");
 const logger = require("./configs/logger.config");
-
-// const roles = require("./utils/getUserRoles.util");
+const morganMiddleware = require("./middlewares/morgan.middleware");
+const { notFound, errorHandler } = require("./middlewares/error.middleware");
 
 const app = express();
 
-// Middlewares
+// middlewares
 app.use(cors());
 app.use(helmet());
 app.use(morganMiddleware);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/api/status", (req, res) => {
-  logger.error("Checking the API status: Everything is OK");
-  res.status(200).send({
-    status: "UP",
-    message: "The API is up and running!",
-  });
-});
-
-// API Documentation - Swagger
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Praava Developer Documentation",
-      version: "1.0.0",
-      descriptio: "Here we get all the documentations",
-    },
-    servers: [
-      {
-        url: "http://localhost:5000",
-      },
-    ],
+const devRoutes = [
+  {
+    path: "/docs",
+    route: docsRoute,
   },
-  apis: ["./routes/*js"],
-};
+];
 
-const specs = swaggerJsDoc(options);
-
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+if (process.env.NODE_ENV === "developemnt") {
+  devRoutes.forEach((route) => {
+    app.use(route.path, route.route);
+  });
+}
 
 // Routes
 app.use("/auth", require("./routes/auth.route"));
 app.use("/dashboard", require("./routes/dashboard.route"));
 app.use("/admin", require("./routes/admin.route"));
-// app.use("/api-collections", require("./routes/apiCollection.route"));
 
-// const res = roles("3577ae90-12b8-435d-8d6c-d079159c748a");
-
+// send back a 404 error for any unknown api request
 app.use(notFound);
+
+// handle error
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

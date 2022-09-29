@@ -27,7 +27,7 @@ const createNewRole = async (req, res) => {
 
     res.json(createRole.rows[0]);
   } catch (err) {
-    console.log(err.message);
+    logger.error(err);
     res.status(500).send("Server Error");
   }
 };
@@ -35,7 +35,6 @@ const createNewRole = async (req, res) => {
 const createApiCollection = async (req, res) => {
   try {
     const collectionName = req.body.name;
-    // console.log(collectionName);
 
     const createCollection = await pool.query(
       "INSERT INTO api_collection (name) VALUES($1)",
@@ -44,7 +43,7 @@ const createApiCollection = async (req, res) => {
 
     res.json(createCollection.rows[0]);
   } catch (err) {
-    console.log(err.message);
+    logger.error(err);
     res.status(500).send("Server Error");
   }
 };
@@ -61,7 +60,7 @@ const createApiEndpoint = async (req, res) => {
 
     res.json(createEndpoint.rows[0]);
   } catch (err) {
-    console.log(err.message);
+    logger.error(err);
     res.status(500).send("Server Error");
   }
 };
@@ -78,7 +77,7 @@ const userRoleMapping = async (req, res) => {
 
     res.json(createUserRoleMapping.rows[0]);
   } catch (err) {
-    console.log(err.message);
+    logger.error(err);
     res.status(500).send("Server Error");
   }
 };
@@ -95,7 +94,7 @@ const roleApiCollectionMapping = async (req, res) => {
 
     res.status(200).json({ msg: "Created" });
   } catch (err) {
-    console.log(err.message);
+    logger.error(err);
     res.status(500).send("Server Error");
   }
 };
