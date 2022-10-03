@@ -18,14 +18,26 @@ const getAllRegisteredUsers = async (req, res) => {
 
 const deleteUsers = async (req, res) => {
   try {
-    console.log("here");
     const user_id = req.body.userid;
     const query = "UPDATE users SET status = false WHERE id = $1";
     const deleteUser = await pool.query(query, [user_id]);
     res.status(201).json({ message: "User successfully deleted" });
   } catch (err) {
     logger.error(err.message);
-    res.status(httpStatus[500]).send(httpStatus["500_NAME"]);
+    res.status(500).send(httpStatus["500_NAME"]);
+  }
+};
+
+const deleteAPICollection = async (req, res) => {
+  try {
+    const collection_id = req.body.colletionid;
+    const query = "UPDATE api_collection SET status = false WHERE id = $1";
+    const deleteCollection = await pool.query(query, [collection_id]);
+
+    res.status(201).json({ message: "Successfully deleted API Collection" });
+  } catch (err) {
+    logger.error(err.message);
+    res.status(500).send(httpStatus["500_NAME"]);
   }
 };
 
@@ -115,7 +127,7 @@ const roleApiCollectionMapping = async (req, res) => {
 
 const getAPICollection = async (req, res) => {
   try {
-    const query = "SELECT * from api_collection";
+    const query = "SELECT * from api_collection WHERE";
     const getCollection = await pool.query(query);
 
     res.status(200).json(getCollection.rows);
@@ -134,4 +146,5 @@ module.exports = {
   roleApiCollectionMapping,
   deleteUsers,
   getAPICollection,
+  deleteAPICollection,
 };

@@ -10,6 +10,13 @@ router.get(
 );
 
 router.put(
+  "/delete-api-collection",
+  authorization.authMiddle,
+  authorization.adminOnly,
+  controller.deleteAPICollection
+);
+
+router.put(
   "/delete-user",
   authorization.authMiddle,
   authorization.adminOnly,

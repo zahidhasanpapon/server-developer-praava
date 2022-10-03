@@ -6,7 +6,7 @@ const getAPICollection = async (req, res) => {
   try {
     const id = req.user;
     const collections = await pool.query(
-      "select name from api_collection as a inner join role_api_collection_mapping as b on a.id = b.api_collection_id inner join role_api_collection_mapping as c on b.role_id = c.role_id inner join user_roles_mapping as d on c.role_id = d.role_id where d.user_id = $1",
+      "select name from api_collection as a inner join role_api_collection_mapping as b on a.id = b.api_collection_id inner join role_api_collection_mapping as c on b.role_id = c.role_id inner join user_roles_mapping as d on c.role_id = d.role_id where d.user_id = $1 and a.status = true",
       [id]
     );
 
