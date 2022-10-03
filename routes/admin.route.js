@@ -3,9 +3,22 @@ const controller = require("../controllers/admin.controller");
 const authorization = require("../middlewares/authorization.middleware");
 
 router.get(
+  "/get-api-collections",
+  authorization.authMiddle,
+  authorization.adminOnly,
+  controller.getAPICollection
+);
+
+router.put(
+  "/delete-user",
+  authorization.authMiddle,
+  authorization.adminOnly,
+  controller.deleteUsers
+);
+
+router.get(
   "/get-users",
   authorization.authMiddle,
-  // authorization.authorize,
   authorization.adminOnly,
   controller.getAllRegisteredUsers
 );
@@ -36,6 +49,13 @@ router.post(
   authorization.authMiddle,
   authorization.adminOnly,
   controller.userRoleMapping
+);
+
+router.post(
+  "/role-api-mapping",
+  authorization.authMiddle,
+  authorization.adminOnly,
+  controller.roleApiCollectionMapping
 );
 
 module.exports = router;

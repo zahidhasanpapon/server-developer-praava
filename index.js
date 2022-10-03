@@ -34,6 +34,7 @@ if (process.env.NODE_ENV === "developemnt") {
 app.use("/auth", require("./routes/auth.route"));
 app.use("/dashboard", require("./routes/dashboard.route"));
 app.use("/admin", require("./routes/admin.route"));
+app.use("/user", require("./routes/user.route"));
 
 // send back a 404 error for any unknown api request
 app.use(notFound);
