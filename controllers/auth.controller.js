@@ -61,7 +61,7 @@ const loginUser = async (req, res) => {
     // 4. Give them the JWT token
     const token = jwtGenerator(user.rows[0].id);
 
-    res.json(token);
+    res.status(200).json({ token: token });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

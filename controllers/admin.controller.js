@@ -5,7 +5,7 @@ const logger = require("../configs/logger.config");
 const getAllRegisteredUsers = async (req, res) => {
   try {
     const allUsers = await pool.query(
-      "SELECT id, name, email, status FROM users WHERE status = true"
+      "SELECT id, name, email, status FROM users"
     );
 
     // logger.error(`sent all users: ${allUsers}`);
@@ -28,13 +28,91 @@ const deleteUsers = async (req, res) => {
   }
 };
 
+const getUserDetails = async (req, res) => {
+  try {
+    const user_id = req.body.userid;
+    const query = "SELECT name, email FROM users WHERE id = $1";
+    const details = await pool.query(query, [user_id]);
+
+    res.status(200).json(details.rows);
+  } catch (err) {
+    logger.error(err.message);
+    res.status(500).send(httpStatus["500_NAME"]);
+  }
+};
+
+const activateUser = async (req, res) => {
+  try {
+    const user_id = req.body.userid;
+    const query = "UPDATE users SET status = true WHERE id = $1";
+    const activate = await pool.query(query, [user_id]);
+
+    res.status(201).json({ message: "User successfully activated" });
+  } catch (err) {
+    logger.error(err.message);
+    res.status(500).send(httpStatus["500_NAME"]);
+  }
+};
+
+const getAllRoles = async (req, res) => {
+  try {
+    const query = "SELECT * FROM roles";
+    const roles = await pool.query(query);
+
+    res.status(200).json(roles.rows);
+  } catch (err) {
+    logger.error(err.message);
+    res.status(500).send(httpStatus["500_NAME"]);
+  }
+};
+
+const activateRole = async (req, res) => {
+  try {
+    const role_id = req.body.roleid;
+    const query = "UPDATE roles SET status = true WHERE id = $1";
+    const acitvate = await pool.query(query, [role_id]);
+
+    res.status(201).json({ message: "Role succesfully activated" });
+  } catch (err) {
+    logger.error(err.message);
+    res.status(500).send(httpStatus["500_NAME"]);
+  }
+};
+
+const deleteRole = async (req, res) => {
+  try {
+    const role_id = req.body.roleid;
+    const query = "UPDATE roles SET status = false WHERE id = $1";
+    const deleteRole = await pool.query(query, [role_id]);
+
+    res.status(201).json({ message: "Role successfully deleted" });
+  } catch (err) {
+    logger.error(err.message);
+    res.status(500).send(httpStatus["500_NAME"]);
+  }
+};
+
 const deleteAPICollection = async (req, res) => {
   try {
-    const collection_id = req.body.colletionid;
+    const collection_id = req.body.collectionid;
     const query = "UPDATE api_collection SET status = false WHERE id = $1";
     const deleteCollection = await pool.query(query, [collection_id]);
 
     res.status(201).json({ message: "Successfully deleted API Collection" });
+  } catch (err) {
+    logger.error(err.message);
+    res.status(500).send(httpStatus["500_NAME"]);
+  }
+};
+
+const activateAPICollection = async (req, res) => {
+  try {
+    const collection_id = req.body.collectionid;
+    // console.log(collection_id);
+    const query = "UPDATE api_collection SET status = true WHERE id = $1";
+    const activateCollection = await pool.query(query, [collection_id]);
+    // activateCollection;
+    res.status(201).json({ message: "Successfully Activated API Collection" });
   } catch (err) {
     logger.error(err.message);
     res.status(500).send(httpStatus["500_NAME"]);
@@ -127,7 +205,7 @@ const roleApiCollectionMapping = async (req, res) => {
 
 const getAPICollection = async (req, res) => {
   try {
-    const query = "SELECT * from api_collection WHERE";
+    const query = "SELECT * from api_collection";
     const getCollection = await pool.query(query);
 
     res.status(200).json(getCollection.rows);
@@ -147,4 +225,10 @@ module.exports = {
   deleteUsers,
   getAPICollection,
   deleteAPICollection,
+  activateUser,
+  getAllRoles,
+  deleteRole,
+  activateRole,
+  getUserDetails,
+  activateAPICollection,
 };

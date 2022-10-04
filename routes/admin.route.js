@@ -2,11 +2,11 @@ const router = require("express").Router();
 const controller = require("../controllers/admin.controller");
 const authorization = require("../middlewares/authorization.middleware");
 
-router.get(
-  "/get-api-collections",
+router.put(
+  "/activate-api-collection",
   authorization.authMiddle,
   authorization.adminOnly,
-  controller.getAPICollection
+  controller.activateAPICollection
 );
 
 router.put(
@@ -14,6 +14,48 @@ router.put(
   authorization.authMiddle,
   authorization.adminOnly,
   controller.deleteAPICollection
+);
+
+router.get(
+  "/user-details",
+  authorization.authMiddle,
+  authorization.adminOnly,
+  controller.getUserDetails
+);
+
+router.put(
+  "/activate-role",
+  authorization.authMiddle,
+  authorization.adminOnly,
+  controller.activateRole
+);
+
+router.put(
+  "/delete-role",
+  authorization.authMiddle,
+  authorization.adminOnly,
+  controller.deleteRole
+);
+
+router.get(
+  "/get-roles",
+  authorization.authMiddle,
+  authorization.adminOnly,
+  controller.getAllRoles
+);
+
+router.put(
+  "/activate-user",
+  authorization.authMiddle,
+  authorization.adminOnly,
+  controller.activateUser
+);
+
+router.get(
+  "/get-api-collections",
+  authorization.authMiddle,
+  authorization.adminOnly,
+  controller.getAPICollection
 );
 
 router.put(
